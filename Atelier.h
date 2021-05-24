@@ -6,8 +6,13 @@
 #define POO___ATELIER_AUTO_ATELIER_H
 
 
+#include <string>
+
 class Atelier {
 
+public:
+    Atelier(const std::string &nume_atelier, int cont_curent, int rating);
+    vector<Angajat*>angajat;
 };
 
 
