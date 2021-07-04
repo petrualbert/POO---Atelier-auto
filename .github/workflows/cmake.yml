@@ -24,7 +24,7 @@ jobs:
         cppcheck --enable=all .
     - name: valgrind
       run:
-        valgrind --leak-check=full --show-leak-kinds=all
+        valgrind --leak-check=full --show-leak-kinds=all -s
                  --track-origins=yes --error-exitcode=1 ./main
     - name: coverage
       run: |
