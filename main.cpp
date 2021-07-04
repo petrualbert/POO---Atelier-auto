@@ -39,13 +39,20 @@ int main() {
 
     std::cout << atelier << '\n';
 
-    Atelier atelier_dupa_vanzare = atelier;
+
+
+    Atelier atelier_dupa_vanzare(atelier);
     atelier_dupa_vanzare.setMNumeAtelier("E AUTO Shop");
     atelier_dupa_vanzare.concediazaAngajat(mecanic2);
     atelier_dupa_vanzare.platesteSalariiAngajati();
 
-    std::cout << atelier_dupa_vanzare << '\n';
+    atelier = atelier_dupa_vanzare;
+    std::cout << atelier << '\n';
 
+    atelier.platesteSalariiAngajati();
+    atelier.setMNumeAtelier("Compact 0 Team Service Auto");
+    atelier.adaugaRating(1);
+    std::cout << atelier << '\n';
 
 
     return 0;

@@ -40,35 +40,52 @@ void Atelier::setMAngajati(const std::vector<Angajat *> &mAngajati) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Atelier &atelier) {
-    os << "Atelierul " << atelier.m_nume_atelier << "are cont valutar de " << atelier.m_cont << " LEI"
+    os << "Atelierul " << atelier.m_nume_atelier << " are cont valutar de " << atelier.m_cont << " LEI"
      << ", rating " << atelier.m_rating << " si " << atelier.m_angajati.size() << " angajati";
 
     return os;
 }
 
 Atelier::~Atelier() {
-    for (auto &ob : m_angajati)
-    {
-        delete ob;
-    }
     m_angajati.clear();
 }
 
 void Atelier::platesteSalariiAngajati() {
+    int i = 0;
     for (auto &ang : m_angajati)
     {
         if (m_cont - ang->getMSalariu() > 0)
         {
             m_cont -= ang->getMSalariu();
+            i++;
         }
     }
-    std::cout << "Plata salariilor efectuata!" << '\n';
+    if(i==0)
+        std::cout << "Nu mai sunt bani pentru plata salariilor!" << '\n';
+    else
+        std::cout << "Plata salariilor efectuata!" << '\n';
 }
 
-Atelier &Atelier::operator=(const Atelier &ob) {
-    if (this == &ob)
+Atelier& Atelier::operator=(const Atelier &ob) {
+    if(this == &ob)
         return *this;
+    m_angajati.clear();
+//     deep copy
+    for(auto &a : ob.m_angajati)
+    {
+        Angajat *p = new Angajat(*a);
+        m_angajati.push_back(p);
+    }
+
     m_cont = ob.m_cont;
+    m_nume_atelier = ob.m_nume_atelier;
+    m_rating = ob.m_rating;
+    m_note_primite = ob.m_note_primite;
+    return *this;
+}
+
+Atelier::Atelier(const Atelier &ob)
+{
     m_angajati.clear();
     // deep copy
     for(auto &a : ob.m_angajati)
@@ -76,25 +93,9 @@ Atelier &Atelier::operator=(const Atelier &ob) {
         Angajat *p = new Angajat(*a);
         m_angajati.push_back(p);
     }
-
-    m_nume_atelier = ob.m_nume_atelier;
-    m_rating = m_rating;
-    m_note_primite = ob.m_note_primite;
-    return *this;
-}
-
-Atelier::Atelier(const Atelier &ob) {
     m_cont = ob.m_cont;
-    this->~Atelier();
-    // deep copy
-    for(auto &a : ob.m_angajati)
-    {
-        Angajat *p = new Angajat(*a);
-        m_angajati.push_back(p);
-        delete p;
-    }
     m_nume_atelier = ob.m_nume_atelier;
-    m_rating = m_rating;
+    m_rating = ob.m_rating;
     m_note_primite = ob.m_note_primite;
 }
 
@@ -109,7 +110,7 @@ void Atelier::concediazaAngajat(const Angajat &angajat) {
     auto nume = angajat.getMNume();
     auto pred = [&nume](auto item) -> bool
     {
-        return item->getMNume() == nume;
+        return (item->getMNume() == nume);
     };
     m_angajati.erase(std::remove_if(m_angajati.begin(), m_angajati.end(), pred), m_angajati.end());
 
