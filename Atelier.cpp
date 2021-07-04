@@ -51,6 +51,7 @@ Atelier::~Atelier() {
     {
         delete ob;
     }
+    m_angajati.clear();
 }
 
 void Atelier::platesteSalariiAngajati() {
@@ -84,7 +85,7 @@ Atelier &Atelier::operator=(const Atelier &ob) {
 
 Atelier::Atelier(const Atelier &ob) {
     m_cont = ob.m_cont;
-    m_angajati.clear();
+    this->~Atelier();
     // deep copy
     for(auto &a : ob.m_angajati)
     {
