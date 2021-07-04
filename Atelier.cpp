@@ -77,8 +77,7 @@ Atelier& Atelier::operator=(const Atelier &ob) {
 //     deep copy
     for(auto &a : ob.m_angajati)
     {
-        Angajat *p = new Angajat(*a);
-        m_angajati.push_back(p);
+        m_angajati.push_back(new Angajat(*a));
     }
 
     m_cont = ob.m_cont;
@@ -96,9 +95,9 @@ Atelier::Atelier(const Atelier &ob)
     // deep copy
     for(auto &a : ob.m_angajati)
     {
-        Angajat *p = new Angajat(*a);
-        m_angajati.push_back(p);
+        m_angajati.push_back(new Angajat(*a));
     }
+
     m_cont = ob.m_cont;
     m_nume_atelier = ob.m_nume_atelier;
     m_rating = ob.m_rating;
