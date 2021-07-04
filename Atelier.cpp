@@ -91,6 +91,7 @@ Atelier::Atelier(const Atelier &ob) {
     {
         Angajat *p = new Angajat(*a);
         m_angajati.push_back(p);
+        delete p;
     }
     m_nume_atelier = ob.m_nume_atelier;
     m_rating = m_rating;
