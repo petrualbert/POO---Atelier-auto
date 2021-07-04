@@ -95,7 +95,7 @@ Atelier::Atelier(const Atelier &ob)
     // deep copy
     for(auto &a : ob.m_angajati)
     {
-        m_angajati.push_back(new Angajat(*a));
+        this.m_angajati.push_back(new Angajat(*a));
     }
 
     m_cont = ob.m_cont;
