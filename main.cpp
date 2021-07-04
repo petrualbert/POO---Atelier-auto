@@ -46,6 +46,7 @@ int main() {
     atelier_dupa_vanzare.concediazaAngajat(mecanic2);
     atelier_dupa_vanzare.platesteSalariiAngajati();
 
+
     atelier = atelier_dupa_vanzare;
     std::cout << atelier << '\n';
 

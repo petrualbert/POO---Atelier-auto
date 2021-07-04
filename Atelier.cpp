@@ -75,6 +75,7 @@ Atelier& Atelier::operator=(const Atelier &ob) {
     {
         Angajat *p = new Angajat(*a);
         m_angajati.push_back(p);
+        p = nullptr;
     }
 
     m_cont = ob.m_cont;
@@ -92,6 +93,7 @@ Atelier::Atelier(const Atelier &ob)
     {
         Angajat *p = new Angajat(*a);
         m_angajati.push_back(p);
+        p = nullptr;
     }
     m_cont = ob.m_cont;
     m_nume_atelier = ob.m_nume_atelier;
@@ -131,4 +133,5 @@ void Atelier::concediazaAngajat(const Angajat &angajat) {
 void Atelier::adaugaAngajat(Angajat &angajat) {
     Angajat *p = new Angajat(angajat);
     m_angajati.push_back(p);
+    p = nullptr;
 }
