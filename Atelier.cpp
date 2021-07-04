@@ -47,10 +47,8 @@ std::ostream &operator<<(std::ostream &os, const Atelier &atelier) {
 }
 
 Atelier::~Atelier() {
-    for(auto it : m_angajati)
-    {
-        delete it;
-    }
+    for(int i=0;i<m_angajati.size();i++)
+        delete m_angajati[i];
     m_angajati.clear();
 }
 
@@ -100,6 +98,7 @@ Atelier::Atelier(const Atelier &ob)
     {
         Angajat *p = new Angajat(*a);
         m_angajati.push_back(p);
+        delete p;
     }
     m_cont = ob.m_cont;
     m_nume_atelier = ob.m_nume_atelier;
