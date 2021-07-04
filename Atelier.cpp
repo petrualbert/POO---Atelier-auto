@@ -75,7 +75,7 @@ Atelier& Atelier::operator=(const Atelier &ob) {
         delete m_angajati[i];
     m_angajati.clear();
 //     deep copy
-    for(auto &a : ob.m_angajati)
+    for(auto a : ob.m_angajati)
     {
         m_angajati.push_back(new Angajat(*a));
     }
@@ -93,7 +93,7 @@ Atelier::Atelier(const Atelier &ob)
         delete m_angajati[i];
     m_angajati.clear();
     // deep copy
-    for(auto &a : ob.m_angajati)
+    for(auto a : ob.m_angajati)
     {
         this->m_angajati.push_back(new Angajat(*a));
     }
