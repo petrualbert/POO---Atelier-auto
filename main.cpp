@@ -14,7 +14,7 @@ int main() {
 
     std::vector<Angajat*> angajati = {new Angajat(mecanic), new Angajat(angajat)};
     Atelier atelier("Compact Team Service Auto", 5000, angajati);
-
+    angajati.clear();
 
     Mecanic mecanic2("Marian Neculai", 52, 3500, 25);
     atelier.adaugaAngajat(mecanic2);
