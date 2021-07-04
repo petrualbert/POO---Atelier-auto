@@ -1,9 +1,9 @@
 #ifndef POO___ATELIER_AUTO_REPARATIE_H
 #define POO___ATELIER_AUTO_REPARATIE_H
 
-#include "masina.h"
+#include "Masina.h"
 #include <string>
-#include "mecanic.h"
+#include "Mecanic.h"
 #include "Atelier.h"
 #include <vector>
 #include <ostream>
