@@ -73,13 +73,14 @@ void Atelier::platesteSalariiAngajati() {
 Atelier& Atelier::operator=(const Atelier &ob) {
     if(this == &ob)
         return *this;
+    for(int i=0;i<m_angajati.size();i++)
+        delete m_angajati[i];
     m_angajati.clear();
 //     deep copy
     for(auto &a : ob.m_angajati)
     {
         Angajat *p = new Angajat(*a);
         m_angajati.push_back(p);
-        p = nullptr;
     }
 
     m_cont = ob.m_cont;
@@ -91,6 +92,8 @@ Atelier& Atelier::operator=(const Atelier &ob) {
 
 Atelier::Atelier(const Atelier &ob)
 {
+    for(int i=0;i<m_angajati.size();i++)
+        delete m_angajati[i];
     m_angajati.clear();
     // deep copy
     for(auto &a : ob.m_angajati)

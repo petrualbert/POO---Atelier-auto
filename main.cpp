@@ -12,9 +12,9 @@ int main() {
 
     Angajat angajat("Maria Toader", 24, "casier", 2000, 2);
 
-    std::vector<Angajat*> angajati = {new Angajat(mecanic), new Angajat(angajat)};
-    Atelier atelier("Compact Team Service Auto", 5000, angajati);
-    angajati.clear();
+    Atelier atelier("Compact Team Service Auto", 5000,
+                    {new Angajat(mecanic), new Angajat(angajat)});
+
 
     Mecanic mecanic2("Marian Neculai", 52, 3500, 25);
     atelier.adaugaAngajat(mecanic2);
