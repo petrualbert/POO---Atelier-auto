@@ -1,29 +1,51 @@
 #include <iostream>
 #include "Atelier.h"
 #include "Client.h"
-#include "Reperatie.h"
-#include "Persoana.h"
+#include "Reparatie.h"
 
 int main() {
-    Atelier a("nume", 5000, 10 );  // nume, cont_curent si rating
-    Client c("nume");
-    Masina m("marca", 100000);
-    Reperatie r("piesa", 1000);
-    Mecanic mc;
+
+    Client client("Popescu Andrei",25,2500);
+
+    Masina masina(&client,"Dacia","Logan",2006,200000);
+    Mecanic mecanic("Bogdan Tatar", 45, 3100, 20);
+
+    Angajat angajat("Maria Toader", 24, "casier", 2000, 2);
+
+    std::vector<Angajat*> angajati = {new Angajat(mecanic), new Angajat(angajat)};
+    Atelier atelier("Compact Team Service Auto", 5000, angajati);
 
 
+    Mecanic mecanic2("Marian Neculai", 52, 3500, 25);
+    atelier.adaugaAngajat(mecanic2);
 
-    c.cere_pret();
 
-    //a.atribuie_mecanic(); asta dupa ce mai dezvolt aplicatia
+    Reparatie reparatie(&atelier, &masina, &mecanic, 1700, {"baie ulei", "bloc motor"}, false);
+    Reparatie reparatie2(&atelier, &masina, &mecanic2, 2000, {"pompe servodirectie"}, false);
 
-    std::cout << "Reparatia costa" << r.pret_total();
+    std::cout << atelier << '\n';
+    std::cout << client << '\n';
+    std::cout << reparatie2 << '\n';
+    std::cout << reparatie << '\n';
 
-    mc.repara_masina(m); // creste contul curent al firmei
+    reparatie.taxeazaClientul();
+    reparatie2.taxeazaClientul();
+    std::cout << std::boolalpha;
+    std::cout << "Prima reparatie achitata integral: " << reparatie.isMPlataEfectuata() << '\n';
+    std::cout << "A doua reparatie achitata integral: " << reparatie2.isMPlataEfectuata() << '\n';
 
-    c.lasa_rating(a);// creste ratingul atelierului sau scade, vom face o medie daca vor exista mai multe
+    atelier.adaugaRating(8);
+    atelier.adaugaRating(9);
 
-    std::cout << "Reparatia costa";
+    std::cout << atelier << '\n';
+
+    Atelier atelier_dupa_vanzare = atelier;
+    atelier_dupa_vanzare.setMNumeAtelier("E AUTO Shop");
+    atelier_dupa_vanzare.concediazaAngajat(mecanic2);
+    atelier_dupa_vanzare.platesteSalariiAngajati();
+
+    std::cout << atelier_dupa_vanzare << '\n';
+
 
 
     return 0;
